@@ -1,5 +1,5 @@
 import { ctx, canvas, initCanvas } from "./canvas-ctx";
-import GameManager from "./game-manager";
+import {GameManager} from "./game-manager";
 import "./style.css";
 
 initCanvas();
