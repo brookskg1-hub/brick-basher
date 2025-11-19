@@ -3,8 +3,8 @@ import { Brick } from "./brick";
 
 export class GameBoard {
   color: string = BOARD_COLOR;
-  rows: number = 19;
-  cols: number = 19;
+  rows: number = 8;
+  cols: number = 8;
   private readonly x: number;
   private cells: Array<Brick> = [];
 
@@ -37,5 +37,3 @@ export class GameBoard {
     });
   }
 }
-
-
