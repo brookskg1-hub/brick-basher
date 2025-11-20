@@ -37,7 +37,7 @@ export class GameManager {
     slotBeta.brickSet.draw();
     slotCharlie.brickSet.draw();
 
-	this.selectedSlot?.brickSet.draw();
+    this.selectedSlot?.brickSet.draw();
   }
 
   public update(timestamp: number): void {
@@ -46,8 +46,9 @@ export class GameManager {
     document.body.style.cursor = "default";
 
     if (this.selectedSlot) {
-		document.body.style.cursor = "none";
-    	this.selectedSlot.move(this.mousePosition);
+      document.body.style.cursor = "none";
+      this.selectedSlot.move(this.mousePosition);
+      this.board.highlightBrickSet(this.selectedSlot.brickSet);
     }
 
     if (

@@ -3,7 +3,7 @@ import { Point } from "./point";
 
 export class Brick {
   size: number = BRICK_SIZE;
-  highlightColor: string = "white";
+  highlightColor: string | null = null;
 
   constructor(
     private readonly ctx: CanvasRenderingContext2D,
@@ -16,12 +16,22 @@ export class Brick {
     // destructure this into variables
     const { ctx, x, y, size, color } = this;
 
-    ctx.fillStyle = color;
+	ctx.save();
+
+    ctx.fillStyle = this.highlightColor ?? color;
+	ctx.globalAlpha = this.highlightColor ? 0.5 : 1;
+	
     ctx.fillRect(x, y, size, size);
 
-    let borderSize = size * 0.15;
+	this.drawBevels();
 
-    ctx.strokeStyle = "white";
+	ctx.restore();
+  }
+
+  private drawBevels() : void {
+	const { ctx, x, y, size } = this;
+
+	let borderSize = size * 0.15;
 
     // draw top bevel
     ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
@@ -74,16 +84,12 @@ export class Brick {
     return isInPath;
   }
 
-  public center(point: Point): void {
-    const { x, y, size } = this;
-    point.x += size / 2;
-    point.y += size / 2;
+  public center(): Point {
+	const {x, y, size } = this;
+    return new Point(x + size / 2, y + size / 2);
   }
 
-  public isOtherOver(point: Point) {
-    if (this.isPointOver(point) && this.center(point)) {
-      const isPointOnCenter = this.isPointOver(point);
-      return isPointOnCenter;
-    }
+  public isOtherOver(other: Brick): boolean {
+    return this.isPointOver(other.center());
   }
 }
