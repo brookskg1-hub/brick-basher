@@ -2,6 +2,7 @@ import { BRICK_SIZE } from "../constants";
 import { Brick } from "./brick";
 import { Point } from "./point";
 
+
 const pointMap: Array<Point> = [
   new Point(BRICK_SIZE * 0, BRICK_SIZE * 0), // 0
   new Point(BRICK_SIZE * 1, BRICK_SIZE * 0), // 1

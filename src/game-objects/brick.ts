@@ -9,7 +9,8 @@ export class Brick {
     private readonly ctx: CanvasRenderingContext2D,
     public x: number,
     public y: number,
-    public readonly color: string = "red"
+    public readonly color: string = "red",
+    private readonly enableBevels: boolean = true
   ) {}
 
   public draw(): void {
@@ -25,12 +26,27 @@ export class Brick {
     ctx.fillRect(x, y, size, size);
 
     this.drawBevels();
+    this.drawBorders();
 
     // restore the context
     ctx.restore();
   }
 
+  private drawBorders(): void {
+    if (this.enableBevels) {
+      return;
+    }
+
+    //const { ctx, x, y, size } = this;
+
+    
+  }
+
   private drawBevels(): void {
+    if (!this.enableBevels) {
+      return;
+    }
+
     const { ctx, x, y, size } = this;
 
     let borderSize = size * 0.15;

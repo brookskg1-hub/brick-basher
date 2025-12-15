@@ -5,6 +5,7 @@ import { Point } from "./point";
 import { BrickScore, ScoreEvent } from "../game-events";
 
 export class GameBoard {
+  size: number = BRICK_SIZE;
   color: string = BOARD_COLOR;
   rows: number = 8;
   cols: number = 8;
@@ -32,7 +33,7 @@ export class GameBoard {
       for (let col = 0; col < cols; col++) {
         let bx = x + BRICK_SIZE * col;
         let by = y + BRICK_SIZE * row;
-        let cell = new Brick(ctx, bx, by, BOARD_COLOR);
+        let cell = new Brick(ctx, bx, by, BOARD_COLOR, false);
         cells.push(cell);
         slots.push(new BoardSlot(new Point(bx, by), null, row, col, idx));
         idx++;

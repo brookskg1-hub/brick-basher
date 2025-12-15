@@ -1,5 +1,6 @@
 // in typescript we need to register our events with
 // a global event handler map
+
 declare global {
   interface GlobalEventHandlersEventMap {
     "bb-score": ScoreEvent;
@@ -30,3 +31,4 @@ export class GameOverEvent extends Event {
     super("bb-game-over");
   }
 }
+
